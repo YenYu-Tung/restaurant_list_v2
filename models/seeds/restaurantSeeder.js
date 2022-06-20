@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Restaurant = require('../restaurant') // 載入 todo model
+const Restaurant = require('../restaurant') // 載入 model
 mongoose.connect('mongodb+srv://alpha:camp@cluster0.e6ngl.mongodb.net/restaurant-list?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 const restaurantList = require("../../restaurant.json").results
 
