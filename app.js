@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const mongoose = reuire('mongoose')
+const mongoose = require('mongoose')
 mongoose.connect('mongodb+srv://alpha:camp@cluster0.e6ngl.mongodb.net/restaurant-list?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
