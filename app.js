@@ -18,8 +18,6 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 
-
-
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
@@ -27,6 +25,18 @@ app.get('/', (req, res) => {
     .lean()
     .then(restaurants => res.render('index', {restaurants}))
     .catch(error => console.error(error))
+})
+//新增餐廳
+// 引用 body-parser
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+app.post('/restaurants', (req, res) => {
+  Restaurant.create(req.body)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 
