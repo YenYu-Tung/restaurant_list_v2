@@ -5,6 +5,10 @@ const mongoose = require('mongoose')
 mongoose.connect('mongodb+srv://alpha:camp@cluster0.e6ngl.mongodb.net/restaurant-list?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 const Restaurant = require('./models/restaurant')
 
+// 引用 body-parser
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
+
 const db = mongoose.connection
 db.on('error', () => {
   console.log('mongodb error!')
@@ -21,16 +25,34 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
+  const sort = req.query.sort  
   Restaurant.find()
     .lean()
-    .then(restaurants => res.render('index', {restaurants}))
+    .sort({name: sort})    
+    .then(restaurants => res.render('index', {restaurants, sort}))
     .catch(error => console.error(error))
 })
+//搜尋餐廳
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword
+  
+  Restaurant.find({})
+    .lean()
+    .then(restaurants => {
+      const filterRestaurants = restaurants.filter(
+        data =>
+          data.name.toLowerCase().includes(keyword) ||
+          data.category.includes(keyword)
+      )
+      res.render("index", {
+        restaurants: filterRestaurants,
+        keyword,
+      })
+    })
+    .catch(err => console.log(err))
+})
 //新增餐廳
-// 引用 body-parser
-const bodyParser = require('body-parser')
-const restaurant = require('./models/restaurant')
-app.use(bodyParser.urlencoded({ extended: true }))
+
 app.get('/restaurants/new', (req, res) => {
   res.render('new')
 })
@@ -58,7 +80,8 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 app.post('/restaurants/:id/edit', (req, res) => {
-  return Restaurant.findById(req.params.id)
+  const id = req.params.id
+  return Restaurant.findById(id)
     .then( restaurant => {
       restaurant.name = req.body.name
       restaurant.name_en = req.body.name_en
