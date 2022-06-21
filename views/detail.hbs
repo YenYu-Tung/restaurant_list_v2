@@ -40,9 +40,16 @@
     <div class="row text-center justify-content-evenly">
       <div class="col-4">
         <a href="/">回首頁</a>
-      </div>
+      </div>   
       <div class="col-4">
         <a href="/restaurants/{{ restaurant._id }}/edit">Edit</a>
+      </div>
+      <div class="col-4">
+        <form action="/restaurants/{{ restaurant._id }}/delete" method="POST" style="display: inline;">
+          <button type="submit" class="btn btn-danger">
+            刪除
+          </button>
+        </form>
       </div>
          
     </div>

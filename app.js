@@ -29,6 +29,7 @@ app.get('/', (req, res) => {
 //新增餐廳
 // 引用 body-parser
 const bodyParser = require('body-parser')
+const restaurant = require('./models/restaurant')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/restaurants/new', (req, res) => {
   res.render('new')
@@ -72,6 +73,14 @@ app.post('/restaurants/:id/edit', (req, res) => {
     })
     .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error)) 
+})
+
+//刪除餐廳資料
+app.post('/restaurants/:id/delete', (req, res) => {
+  return Restaurant.findById(req.params.id)
+   .then(restaurant => restaurant.remove())
+   .then(() => res.redirect('/'))
+   .catch(error => console.log(error))
 })
 
 app.listen(port, () => {

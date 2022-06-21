@@ -44,9 +44,12 @@
                 <a href="./restaurants/{{this._id}}">Detail</a>
               </div>
               <div class="col">
-                <button type="submit" class="btn btn-danger">
-                  刪除
-                </button>
+                <form action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+                  <button type="submit" class="btn btn-danger">
+                    刪除
+                  </button>
+                </form>
+                
               </div>
             </div>
           </div>
