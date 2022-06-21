@@ -39,6 +39,15 @@ app.post('/restaurants', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//瀏覽餐廳detail
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('detail', {restaurant}))
+    .catch(error => console.log(error))
+})
+
 
 app.listen(port, () => {
   console.log(`Express is listening on localhost: ${port}.`)

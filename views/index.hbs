@@ -36,8 +36,21 @@
               {{this.rating}}
               <i class="fas fa-star fa-xs"></i>
             </span>
+            <div class="row align-items-end">
+              <div class="col">
+                <a href="./restaurants/{{this._id}}">Edit</a>
+              </div>
+              <div class="col">
+                <a href="./restaurants/{{this._id}}">Detail</a>
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-danger">
+                  刪除
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
+        </div>        
       </a>
     </div>
     {{/each}}
