@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Todo = require('../../models/todo')
+const Restaurant = require('../../models/restaurant')
 
 //新增餐廳
 
@@ -56,3 +56,5 @@ router.delete('/:id', (req, res) => {
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
+
+module.exports = router
