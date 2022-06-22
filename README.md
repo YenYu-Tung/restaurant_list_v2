@@ -22,3 +22,4 @@
 * Font-awesome 5.8.1
 * MongoDB
 * mongoose 5.9.7
+* method-override 3.0.0
