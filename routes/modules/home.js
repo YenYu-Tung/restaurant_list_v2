@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const Restaurant = require('../../models/restaurant')
+
 // 定義首頁路由
 router.get('/', (req, res) => {
   const sort = req.query.sort

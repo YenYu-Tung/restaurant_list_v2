@@ -2,8 +2,11 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
-//新增餐廳
+// 引用 body-parser
+const bodyParser = require('body-parser')
+router.use(bodyParser.urlencoded({ extended: true }))
 
+//新增餐廳
 router.get('/new', (req, res) => {
   res.render('new')
 })
@@ -30,7 +33,7 @@ router.get('/:id/edit', (req, res) => {
     .then((restaurant) => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
 })
-router.put('/:id/edit', (req, res) => {
+router.put('/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => {
