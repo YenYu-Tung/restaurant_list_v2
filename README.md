@@ -3,15 +3,17 @@
 * check up all restaurant
 * for more detail information
 * see the location on google map
-* search for specific restaurant
-* add new restaurant
-* edit information
-* delete restaurant
+* search for the specific restaurant
+* add new restaurants
+* edit detail information
+* delete restaurants
+* sort depends on users selection
 ## environment setup
 * install node.js & npm
 * clone the repository to local
-* $ npm install
-* $ npm run start
+* ```npm install```
+* ```node models/seeds/restaurantSeeder.js```
+* ```npm run start```
 * see "Express is listening on localhost: 3000." means operate successfully
 * ctrl + c to stop server
 ## development tools

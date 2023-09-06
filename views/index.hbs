@@ -53,12 +53,15 @@
               {{this.rating}}
               <i class="fas fa-star fa-xs"></i>
             </span>
-            <div class="row align-items-end">
+            <hr>
+            <div class="row align-items-end mt-2">
               <div class="col">
-                <a href="./restaurants/{{this._id}}/edit">Edit</a>
+                <a class="btn btn-primary" href="./restaurants/{{this._id}}/edit" role="button">Edit</a>
+                {{!-- <a href="./restaurants/{{this._id}}/edit">Edit</a> --}}
               </div>
               <div class="col">
-                <a href="./restaurants/{{this._id}}">Detail</a>
+                <a class="btn btn-primary" href="./restaurants/{{this._id}}/edit" role="button">Detail</a>
+                {{!-- <a href="./restaurants/{{this._id}}/edit">Detail</a> --}}
               </div>
               <div class="col">
                 <form action="./restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
